@@ -1,5 +1,11 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -11,15 +17,15 @@ return require('packer').startup(function(use)
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use({ 
-	  'rose-pine/neovim', 
-	  as = 'rose-pine',
+  use({
+	  'catppuccin/nvim',
+	  as = 'catppuccin',
 	  config = function()
-		  vim.cmd('colorscheme rose-pine')
+		  vim.cmd('colorscheme catppuccin')
 	  end
   })
 
-  vim.cmd('colorscheme rose-pine')
+  vim.cmd('colorscheme catppuccin')
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
@@ -40,7 +46,6 @@ return require('packer').startup(function(use)
               end,
           },
           {'williamboman/mason-lspconfig.nvim'}, -- Optional
-    
           -- Autocompletion
           {'hrsh7th/nvim-cmp'},     -- Required
           {'hrsh7th/cmp-nvim-lsp'}, -- Required
@@ -53,5 +58,12 @@ return require('packer').startup(function(use)
       config = function()
           require('Comment').setup()
       end
-   }
+  }
+
+  use('mfussenegger/nvim-dap')
+  use('rcarriga/nvim-dap-ui')
+  use('leoluz/nvim-dap-go')
+  use('theHamsta/nvim-dap-virtual-text')
+  use { 'nvim-tree/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
+  use('rcarriga/nvim-notify')
 end)
