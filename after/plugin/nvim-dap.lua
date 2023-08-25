@@ -44,3 +44,19 @@ dap.adapters.go = {
 }
 
 
+dap.configurations.python = {
+  {
+    type = "python", -- Which adapter to use
+    name = "Debug", -- Human readable name
+    request = "launch", -- Whether to "launch" or "attach" to program
+    module = "debugpy",
+    program = "${file}", -- The buffer you are focused on when running nvim-dap
+  },
+}
+
+
+dap.adapters.python = {
+  type = 'executable';
+  command = '/opt/homebrew/bin/python3';
+  args = { '-m', 'debugpy.adapter' };
+}
